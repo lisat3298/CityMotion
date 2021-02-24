@@ -1,7 +1,9 @@
 ---
 title: "CitMotion"
 author: "Lisa Tang"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -16,11 +18,31 @@ library(ggplot2)
 
 
 ```{r load-data, message = FALSE}
-citymotion <- read.csv("~/R/CityMotion/Sentiance Testing (Responses + Reimbursements) - Duration Data.csv")
+citymotion <- read.csv("~/R/CityMotion/Duration - Duration Data.csv")
 ```
 
 ```{r}
-glimpse(citymotion)
+ggplot(data = citymotion, 
+       mapping = aes(x = predicted_duration, y = actual_duration)) + 
+   geom_point() + 
+   labs(title = "Sentiance Predicted Duration of Travel vs Actual Duration of Travel",
+        x = "Predicted Duration (Minutes)", y = "Actual Duration (Minutes)")
 ```
 
-
+```{r}
+citymotion %>% 
+  mutate(diff = actual_duration - predicted_duration) %>% 
+  ggplot(citymotion, mapping = aes(x = actual_duration, y = diff, color = mode)) +
+   geom_point() + 
+   labs(title = "Difference in Sentiance Predicted Duration for Different Travel Times", color = "Mode of Transport",
+        x = "Actual Travel Duration (min)", y = "Difference in Duration (actual - predicted, min)")
+```
+```{r}
+citymotion %>% 
+  mutate(diff = actual_duration - predicted_duration) %>% 
+  ggplot(citymotion, mapping = aes(x = actual_duration, y = diff, color = mode)) +
+  ylim(-20, 20) + xlim(0,20) +
+   geom_point() + 
+   labs(title = "Difference in Sentiance Predicted Duration for Different Travel Times", color = "Mode of Transport",
+        x = "Actual Travel Duration (min)", y = "Difference in Duration (actual - predicted, min)")
+```
