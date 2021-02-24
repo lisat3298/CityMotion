@@ -1,0 +1,26 @@
+---
+title: "CitMotion"
+author: "Lisa Tang"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(usethis)
+use_git_config(user.name= "lisat3298", user.email="lisa.t3298@gmail.com")
+```
+
+```{r libraries}
+library(tidyverse)
+library(ggplot2)
+```
+
+
+```{r load-data, message = FALSE}
+citymotion <- read.csv("~/R/CityMotion/Sentiance Testing (Responses + Reimbursements) - Duration Data.csv")
+```
+
+```{r}
+glimpse(citymotion)
+```
+
+
