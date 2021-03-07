@@ -46,3 +46,28 @@ citymotion %>%
    labs(title = "Difference in Sentiance Predicted Duration for Different Travel Times", color = "Mode of Transport",
         x = "Actual Travel Duration (min)", y = "Difference in Duration (actual - predicted, min)")
 ```
+```{r load-data, message = FALSE}
+distance <- read.csv("~/R/CityMotion/Distance.csv")
+```
+
+```{r}
+distance %>% 
+  mutate(diff = actual_distance - predicted_distance) %>% 
+  ggplot(distance, mapping = aes(x = actual_distance, y = diff, color = mode)) +
+   geom_point() + 
+   labs(title = "Difference in Sentiance Predicted Distances", color = "Mode of Transport",
+        x = "Actual Travel Distance (km)", y = "Difference in Distance (actual - predicted, km)")
+```
+
+
+
+```{r}
+distance %>% 
+  mutate(diff = actual_distance - predicted_distance) %>% 
+  ggplot(distance, mapping = aes(x = actual_distance, y = diff, color = mode)) +
+  ylim(-20, 20) + xlim(0,20) +
+   geom_point() + 
+  geom_jitter() +
+   labs(title = "Difference in Sentiance Predicted Distances", color = "Mode of Transport",
+        x = "Actual Travel Distance (km)", y = "Difference in Distance (actual - predicted, km)")
+```

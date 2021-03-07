@@ -5,10 +5,10 @@ predicted_distance,actual_distance,mode
 0.999,0.999,Walking
 0.752,0.963,Walking
 0.239,0.2,Walking
-0.731,700,Walking
+0.731,0.700,Walking
 6.05,0.231,Bus
 0.91,0.8,Walking
-0.508,500,Walking
+0.508,0.500,Walking
 0.76,0.6,Walking
 4.43,2.5,Bus
 0.399,0.399,Walking
